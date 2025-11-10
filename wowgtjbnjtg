@@ -7,10 +7,11 @@ proxies:
   - name: Indo→Prancis
     type: ss
     server: 103.197.190.18
-    port: 8388
+    port: 1080
     cipher: chacha20-ietf-poly1305
     password: "@Sayalupa1"
     udp: true
+
 
 proxy-groups:
   - name: "PROXY"
