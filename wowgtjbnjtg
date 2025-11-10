@@ -12,14 +12,12 @@ proxies:
     password: "@Sayalupa1"
     udp: true
 
-
 proxy-groups:
-  - name: "PROXY"
+  - name: Proxy
     type: select
     proxies:
       - Indo→Prancis
       - DIRECT
 
 rules:
-  - GEOIP,PRIVATE,DIRECT
-  - MATCH,PROXY
+  - MATCH,Proxy
