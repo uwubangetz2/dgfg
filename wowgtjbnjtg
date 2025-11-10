@@ -4,20 +4,34 @@ mode: Rule
 log-level: info
 
 proxies:
-  - name: Indo→Prancis
+  # 🔹 Tahap 1: Koneksi ke VPS Indonesia
+  - name: "Indo-Relay"
     type: ss
-    server: 103.197.190.18
-    port: 1080
+    server: 103.197.190.18   # ganti dengan IP VPS Indo kamu
+    port: 1080               # port dari ss-redir Indo (cek pakai ss -ltnup)
     cipher: chacha20-ietf-poly1305
     password: "@Sayalupa1"
     udp: true
 
+  # 🔹 Tahap 2: Jalur keluar ke VPS Prancis
+  - name: "France-Exit"
+    type: ss
+    server: 72.60.69.4
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "@Sayalupa1"
+    udp: true
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: www.bing.com
+
 proxy-groups:
-  - name: Proxy
-    type: select
+  - name: "AUTO"
+    type: relay
     proxies:
-      - Indo→Prancis
-      - DIRECT
+      - Indo-Relay
+      - France-Exit
 
 rules:
-  - MATCH,Proxy
+  - MATCH,AUTO
