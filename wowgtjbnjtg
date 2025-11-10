@@ -4,20 +4,18 @@ mode: Rule
 log-level: info
 
 proxies:
-  # 🔹 Tahap 1: Koneksi ke VPS Indonesia
+  # Tahap 1: Indo SOCKS keluar ke Prancis
   - name: "Indo-Relay"
-    type: ss
-    server: 103.197.190.18   # ganti dengan IP VPS Indo kamu
-    port: 1080               # port dari ss-redir Indo (cek pakai ss -ltnup)
-    cipher: chacha20-ietf-poly1305
-    password: "@Sayalupa1"
+    type: socks5
+    server: <IP_VPS_INDO>
+    port: 1080
     udp: true
 
-  # 🔹 Tahap 2: Jalur keluar ke VPS Prancis
+  # Tahap 2: VPS Prancis (exit point)
   - name: "France-Exit"
     type: ss
     server: 72.60.69.4
-    port: 443
+    port: 8388
     cipher: chacha20-ietf-poly1305
     password: "@Sayalupa1"
     udp: true
