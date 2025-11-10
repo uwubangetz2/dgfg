@@ -1,41 +1,24 @@
-# Clash Meta config ready-to-import
 mixed-port: 7890
 allow-lan: true
-bind-address: 0.0.0.0
-mode: rule
+mode: Rule
 log-level: info
-ipv6: false
 
 proxies:
-  - name: "GameProxy-France"
+  - name: Indo→Prancis
     type: ss
-    server: 72.60.69.4
-    port: 443
+    server: 103.197.190.18
+    port: 8388
     cipher: chacha20-ietf-poly1305
     password: "@Sayalupa1"
     udp: true
-    plugin: obfs
-    plugin-opts:
-      mode: http
-      host: www.bing.com
 
 proxy-groups:
-  - name: "GAME-FALLBACK"
+  - name: "PROXY"
     type: select
     proxies:
-      - GameProxy-France
-      - DIRECT
-
-  - name: "SELECT"
-    type: select
-    proxies:
-      - GameProxy-France
+      - Indo→Prancis
       - DIRECT
 
 rules:
-  # Prioritaskan Growtopia domains to proxy
-  - DOMAIN-SUFFIX,growtopiagame.com,GAME-FALLBACK
-  - DOMAIN-KEYWORD,growtopia,GAME-FALLBACK
-  # General rules
   - GEOIP,PRIVATE,DIRECT
-  - MATCH,SELECT
+  - MATCH,PROXY
